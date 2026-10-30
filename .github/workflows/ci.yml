@@ -1,0 +1,46 @@
+name: Telegram plugin
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: windows-2025
+    defaults:
+      run:
+        shell: pwsh
+        working-directory: wini_plugin_telegram
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          path: wini_plugin_telegram
+          persist-credentials: false
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: Cloudwhile/WindowsIsland
+          path: windowsisland
+          persist-credentials: false
+      - uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68
+        with:
+          dotnet-version: '10.0.x'
+      - name: Build plugin and hook checks
+        run: dotnet build tests/Wini.Plugin.Telegram.HookTests -c Release
+      - name: Verify Qt 5 capture and cleanup
+        run: dotnet run --project tests/Wini.Plugin.Telegram.HookTests -c Release --no-build -- $PWD
+      - name: Verify Qt 6 capture and cleanup
+        run: dotnet run --project tests/Wini.Plugin.Telegram.HookTests -c Release --no-build -- $PWD --qt6
+      - name: Package plugin
+        run: ./packaging/Build-Plugin.ps1
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: wini_plugin_telegram
+          path: |
+            wini_plugin_telegram/artifacts/*.zip
+            wini_plugin_telegram/artifacts/*.sha256
+            wini_plugin_telegram/artifacts/catalog-*.json
+          if-no-files-found: error
