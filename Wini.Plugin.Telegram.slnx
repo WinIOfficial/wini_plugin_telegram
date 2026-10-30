@@ -1,0 +1,4 @@
+<Solution>
+  <Folder Name="/src/"><Project Path="src/Wini.Plugin.Telegram/Wini.Plugin.Telegram.csproj" /></Folder>
+  <Folder Name="/tests/"><Project Path="tests/Wini.Plugin.Telegram.HookTests/Wini.Plugin.Telegram.HookTests.csproj" /></Folder>
+</Solution>

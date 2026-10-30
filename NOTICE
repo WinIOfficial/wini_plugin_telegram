@@ -1,0 +1,7 @@
+This plugin includes Telegram integration code extracted from Windows Island
+(https://github.com/Cloudwhile/WindowsIsland), licensed under Apache License 2.0.
+The original license is included as WindowsIsland.LICENSE in distributed
+packages and in licenses/WindowsIsland.LICENSE in the source repository.
+
+The native bridge uses MinHook. Its license is included in
+native/vendor/minhook/LICENSE.txt and in distributed plugin packages.

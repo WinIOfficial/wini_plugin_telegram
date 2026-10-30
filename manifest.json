@@ -1,0 +1,34 @@
+{
+  "id": "wini_plugin_telegram",
+  "name": "Telegram",
+  "version": "0.1.0",
+  "minimumHostVersion": "0.1.0",
+  "minHostVersion": "0.1.0",
+  "entryAssembly": "Wini.Plugin.Telegram.dll",
+  "entryType": "Wini.Plugin.Telegram.TelegramPlugin",
+  "contractVersion": 1,
+  "permissions": [
+    "notifications",
+    "automation",
+    "process"
+  ],
+  "desktop": {
+    "processes": [
+      "Telegram"
+    ],
+    "modules": [
+      "Qt5Core.dll",
+      "Qt6Core.dll"
+    ],
+    "purpose": "接收 Telegram 桌面版的新消息、头像与通知弹窗。"
+  },
+  "author": "winiofficial",
+  "description": "Telegram 桌面消息通知与会话头像。",
+  "developerId": "winiofficial",
+  "developerName": "winiofficial",
+  "repositoryUrl": "https://github.com/WinIOfficial/wini_plugin_telegram",
+  "terms": {
+    "revision": "1",
+    "text": "启用后，Telegram 插件会连接本机 Telegram 桌面版，读取新消息和通知头像并显示提醒；连接不可用时尝试读取客户端通知弹窗。停用后停止监听并断开连接。插件不上传聊天内容。"
+  }
+}
